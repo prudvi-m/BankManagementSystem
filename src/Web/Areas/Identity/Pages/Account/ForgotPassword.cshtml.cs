@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BankManagementSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
+// using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -16,12 +16,12 @@ namespace BankManagementSystem.Web.Areas.Identity.Pages.Account
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<Client> _userManager;
-        private readonly IEmailSender _emailSender;
+        // private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<Client> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<Client> userManager) //, IEmailSender emailSender)
         {
             _userManager = userManager;
-            _emailSender = emailSender;
+            // _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -54,10 +54,10 @@ namespace BankManagementSystem.Web.Areas.Identity.Pages.Account
                     values: new { code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                // await _emailSender.SendEmailAsync(
+                //     Input.Email,
+                //     "Reset Password",
+                //     $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

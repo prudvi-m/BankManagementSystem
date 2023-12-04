@@ -34,9 +34,12 @@
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // services.AddDbContext<BankManagementSystemDbContext>(options =>
+            //     options.UseSqlite(
+            //         Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BankManagementSystem.Data")));
+
             services.AddDbContext<BankManagementSystemDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BankManagementSystem.Data")));
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BankManagementSystem.Data")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -74,7 +77,7 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                // app.UseDatabaseErrorPage();
             }
             else
             {
@@ -99,5 +102,3 @@
     }
 }
 
-// find . -type d -name "bin" -exec rm -rf {} + find . -type d -name "obj" -exec rm -rf {} 
-// find . -type d -name "bin" -exec rm -rf {} +

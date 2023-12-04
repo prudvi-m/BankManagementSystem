@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using BankManagementSystem.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
+// using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using BankManagementSystem.Web.Areas.Identity.Models.BindingModels;
+// using Microsoft.AspNetCore.Identity.UI.Services; 
+
 
 namespace BankManagementSystem.Web.Areas.Identity.Pages.Account
 {
@@ -20,18 +22,19 @@ namespace BankManagementSystem.Web.Areas.Identity.Pages.Account
         private readonly SignInManager<Client> _signInManager;
         private readonly UserManager<Client> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        // private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<Client> userManager,
             SignInManager<Client> signInManager,
-            ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            ILogger<RegisterModel> logger)
+            // ,
+            // IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            // _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -70,8 +73,8 @@ namespace BankManagementSystem.Web.Areas.Identity.Pages.Account
                         values: new { userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    // await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    //     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _userManager.AddToRoleAsync(user, userRole);
 
